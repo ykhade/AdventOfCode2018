@@ -7,11 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Question2P1 {
+public class Question2 {
     public static void main(String[] args) throws IOException {
         System.out.println("The value of the checksum is " + solve2A("/Users/yashkhade/IdeaProjects/AdventOfCode2018/src/com/yashkhade/input2.txt"));
     }
-
+//SOLUTION PART1
     public static int solve2A(String inputFileName) throws IOException {
         List<String> lines = Files.readAllLines(Paths.get(inputFileName));
 
@@ -45,8 +45,8 @@ public class Question2P1 {
         return doubleCount * tripleCount;
     }
 
-    //+++++++++++++++++++++++++++++++++++++++
 
+//SOLUTION PART 2
     public static
 
 }
