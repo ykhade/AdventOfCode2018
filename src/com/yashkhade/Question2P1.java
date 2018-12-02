@@ -19,15 +19,15 @@ public class Question2P1 {
         int tripleCount = 0;
 
         for (String line : lines) {
-            Map<Character, Integer> seen = new HashMap<Character, Integer>();
+            Map<Character, Integer> found = new HashMap<Character, Integer>();
             for (int i = 0; i < line.length(); i++) {
                 Character c = line.charAt(i);
-                seen.put(c, seen.getOrDefault(c, 0) + 1);
+                found.put(c, found.getOrDefault(c, 0) + 1);
             }
             boolean foundDouble = false;
             boolean foundTriple = false;
 
-            for (Map.Entry<Character, Integer> entry : seen.entrySet()) {
+            for (Map.Entry<Character, Integer> entry : found.entrySet()) {
                 if (entry.getValue() == 2 && !foundDouble) {
                     foundDouble = true;
                     doubleCount++;
@@ -44,5 +44,9 @@ public class Question2P1 {
 
         return doubleCount * tripleCount;
     }
+
+    //+++++++++++++++++++++++++++++++++++++++
+
+    public static
 
 }
