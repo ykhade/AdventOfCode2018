@@ -11,14 +11,34 @@ public class Question3 {
 
         for (String line : lines) {
 
-            // parse the necessary fabric dimensions
+            // Parse the fabric dimensions
             int leftEdge = Integer.parseInt(line.substring(line.indexOf("@ ") + 2, line.indexOf(",")).trim());
             int topEdge = Integer.parseInt(line.substring(line.indexOf(",") + 1, line.indexOf(":")).trim());
             int width = Integer.parseInt(line.substring(line.indexOf(": ") + 2, line.indexOf("x")).trim());
             int height = Integer.parseInt(line.substring(line.indexOf("x") + 1).trim());
 
 
-            // lay fabric id's down on the grid, increment count for every layer added to a square inch
+            // increment for every layer
+            for (int i = 0; i < width; i++) {
+                for (int j = 0; j < height; j++) {
+
+                    Area[leftEdge + i][topEdge + j]++;
+
+                }
+            }
+
+        }
+        for (String line : lines) {
+
+            // Parse the fabric dimensions
+            boolean notOverlapping = true;
+            int leftEdge = Integer.parseInt(line.substring(line.indexOf("@ ") + 2, line.indexOf(",")).trim());
+            int topEdge = Integer.parseInt(line.substring(line.indexOf(",") + 1, line.indexOf(":")).trim());
+            int width = Integer.parseInt(line.substring(line.indexOf(": ") + 2, line.indexOf("x")).trim());
+            int height = Integer.parseInt(line.substring(line.indexOf("x") + 1).trim());
+
+
+            // increment for every layer
             for (int i = 0; i < width; i++) {
                 for (int j = 0; j < height; j++) {
 
@@ -29,7 +49,9 @@ public class Question3 {
 
         }
 
-        // count the number of square inches covered by two or more claims
+
+
+        // count the number of square inches in claims
         for (int i = 0; i < Area.length; i++) {
             for (int j = 0; j < Area[i].length; j++) {
 
@@ -43,6 +65,7 @@ public class Question3 {
         return overlapCount;
 
     }
+
 
 
 
