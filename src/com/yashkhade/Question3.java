@@ -28,26 +28,7 @@ public class Question3 {
             }
 
         }
-        for (String line : lines) {
 
-            // Parse the fabric dimensions
-            boolean notOverlapping = true;
-            int leftEdge = Integer.parseInt(line.substring(line.indexOf("@ ") + 2, line.indexOf(",")).trim());
-            int topEdge = Integer.parseInt(line.substring(line.indexOf(",") + 1, line.indexOf(":")).trim());
-            int width = Integer.parseInt(line.substring(line.indexOf(": ") + 2, line.indexOf("x")).trim());
-            int height = Integer.parseInt(line.substring(line.indexOf("x") + 1).trim());
-
-
-            // increment for every layer
-            for (int i = 0; i < width; i++) {
-                for (int j = 0; j < height; j++) {
-
-                    Area[leftEdge + i][topEdge + j]++;
-
-                }
-            }
-
-        }
 
 
 
@@ -64,6 +45,61 @@ public class Question3 {
 
         return overlapCount;
 
+    }
+
+    public static int solve3B(String input) {
+        String[] lines = input.split("\n");
+        int[][] Area = new int[1000][1000];
+        int overlapCount = 0;
+
+        for (String line : lines) {
+
+            // Parse the fabric dimensions
+            int leftEdge = Integer.parseInt(line.substring(line.indexOf("@ ") + 2, line.indexOf(",")).trim());
+            int topEdge = Integer.parseInt(line.substring(line.indexOf(",") + 1, line.indexOf(":")).trim());
+            int width = Integer.parseInt(line.substring(line.indexOf(": ") + 2, line.indexOf("x")).trim());
+            int height = Integer.parseInt(line.substring(line.indexOf("x") + 1).trim());
+
+
+            // increment for every layer
+            for (int i = 0; i < width; i++) {
+                for (int j = 0; j < height; j++) {
+
+                    Area[leftEdge + i][topEdge + j]++;
+
+                }
+            }
+
+        }
+        for (String line : lines) {
+
+            // Parse the fabric dimensions
+            boolean notOverlapping = true;
+            int id = Integer.parseInt(line.substring(line.indexOf("#") +1, line.indexOf("@")).trim());
+            int leftEdge = Integer.parseInt(line.substring(line.indexOf("@ ") + 2, line.indexOf(",")).trim());
+            int topEdge = Integer.parseInt(line.substring(line.indexOf(",") + 1, line.indexOf(":")).trim());
+            int width = Integer.parseInt(line.substring(line.indexOf(": ") + 2, line.indexOf("x")).trim());
+            int height = Integer.parseInt(line.substring(line.indexOf("x") + 1).trim());
+
+
+            // increment for every layer
+            for (int i = 0; i < width; i++) {
+                for (int j = 0; j < height; j++) {
+
+
+
+                    if(Area[leftEdge + i][topEdge + j] > 1) {
+                        notOverlapping = false;
+                    }
+
+                }
+            }
+            if (notOverlapping){
+                return id;
+            }
+
+        }
+        return -1;
     }
 
 
@@ -1458,9 +1494,11 @@ public class Question3 {
 
         // exercise solution given test input
         int soln = solve3A(input);
+        int soln2 = solve3B(input);
         // int soln = solution2(input);
 
-        System.out.println("Solution Output: " + soln);
+        System.out.println("Solution Output to part 1: " + soln + " inches");
+        System.out.println("The solution to part 2 " +  soln2 + " ID");
     }
 
 }
