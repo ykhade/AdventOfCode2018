@@ -3,11 +3,10 @@ package com.yashkhade;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
 public class Question5 {
     public static void main(String[] args) {
         File file = new File("/Users/yashkhade/IdeaProjects/AdventOfCode2018/src/com/yashkhade/input5.txt");
-        String str = " ";
+        String str = "";
         try {
             Scanner scan = new Scanner(file);
             while (scan.hasNextLine()) {
@@ -22,24 +21,18 @@ public class Question5 {
             while (isReducing) {
                 isReducing = false;
 
-                for (int i = 0; i<newStr.length() - 1; i++) {
-                    if(newStr.charAt(i) == j || newStr.charAt(i) == j - 32) {
+                for (int i = 0; i < newStr.length() - 1; i++) {
+                    if (newStr.charAt(i) == j || newStr.charAt(i) == j - 32) {
                         newStr = newStr.substring(0, i) + newStr.substring(i + 1, newStr.length());
                         i--;
                     }
                 }
-
                 for (int i = 0; i < newStr.length() - 1; i++) {
                     if (Math.abs(newStr.charAt(i) - newStr.charAt(i + 1)) == 32) {
                         isReducing = true;
-                        newStr = newStr.substring(0,i) +  newStr.substring(i + 2, newStr.length());
+                        newStr = newStr.substring(0, i) + newStr.substring(i + 2, newStr.length());
                     }
                 }
-
-
-
-
-
 
 
             }
